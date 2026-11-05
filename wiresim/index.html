@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kebijakan Privasi / Privacy Policy — Wiring Sim (ControlEngineerID)</title>
+  <style>
+    :root {
+      --bg: #0f2537;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #475569;
+      --accent: #1e3a5f;
+      --highlight: #ffc107;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+      background-color: #f1f5f9;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    header {
+      background: linear-gradient(135deg, #0f2537 0%, #1e3a5f 100%);
+      color: #ffffff;
+      padding: 2.2rem 1.25rem;
+      text-align: center;
+      border-bottom: 4px solid var(--highlight);
+    }
+    header h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.75rem;
+    }
+    header p {
+      margin: 0.25rem 0;
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
+    main {
+      max-width: 880px;
+      margin: 1.5rem auto 3rem auto;
+      padding: 0 1rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 6px rgba(15, 37, 55, 0.06);
+    }
+    .lang-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      margin-top: 0.25rem;
+      color: var(--accent);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.4rem;
+    }
+    h3 {
+      color: var(--accent);
+      margin-top: 1.35rem;
+      margin-bottom: 0.4rem;
+    }
+    ul {
+      padding-left: 1.25rem;
+    }
+    li {
+      margin-bottom: 0.45rem;
+    }
+    code {
+      background: #f1f5f9;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: #0f172a;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 1.5rem 1rem 2.5rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Kebijakan Privasi / Privacy Policy</h1>
+    <p><strong>Wiring Sim</strong> (<code>id.controlengineer.wiresim</code>) — ControlEngineerID</p>
+    <p>Terakhir diperbarui / Last updated: 2026-11-03 &middot; Kontak / Contact: <code>&lt;&lt;EMAIL_PEMILIK&gt;&gt;</code></p>
+  </header>
+
+  <main>
+    <section class="card" id="id">
+      <span class="lang-badge">Bahasa Indonesia</span>
+      <h2>Kebijakan Privasi — Wiring Sim</h2>
+
+      <h3>1. Ringkasan</h3>
+      <p>
+        <strong>Wiring Sim</strong> (<code>id.controlengineer.wiresim</code>) adalah aplikasi simulator instalasi listrik dan kontrol motor 3 fasa interaktif yang berjalan <strong>100% secara luring (offline)</strong> di perangkat Android Anda. Kami menghormati privasi Anda:
+      </p>
+      <ul>
+        <li>Aplikasi ini <strong>tidak meminta izin akses internet</strong> (<code>android.permission.INTERNET</code>) maupun izin sensitif apa pun (tanpa kamera, lokasi, mikrofon, kontak, atau penyimpanan penuh).</li>
+        <li>Aplikasi ini <strong>tidak memiliki sistem akun/login</strong>, tidak menggunakan server eksternal, tidak menyertakan SDK analitik/pelacak pihak ketiga, dan <strong>tidak menampilkan iklan</strong> pada versi saat ini (<code>1.0.0</code>).</li>
+        <li><strong>Tidak ada data pribadi atau data penggunaan yang dikirim keluar dari perangkat Anda</strong> ke pengembang maupun pihak ketiga mana pun.</li>
+      </ul>
+
+      <h3>2. Data yang Disimpan Secara Lokal di Perangkat</h3>
+      <p>
+        Agar fitur simulasi, latihan, dan ekspor dokumen kerja berjalan dengan baik, aplikasi menyimpan data berikut <strong>hanya di penyimpanan internal pribadi aplikasi</strong> pada perangkat Anda (<code>filesDir</code>, <code>cacheDir</code>, dan <code>SharedPreferences</code> <code>wiresim_prefs</code>):
+      </p>
+      <ul>
+        <li><strong>Rangkaian Tersimpan &amp; Draf Kerja Otomatis (<code>filesDir/circuits/</code> &amp; <code>filesDir/autosave/</code>):</strong> Susunan komponen, jalur pengawatan, ukuran kabel, lokasi perangkat (<code>+IEC 81346-1</code>), dan kabel multicore (<code>-W</code>) yang Anda buat di editor.</li>
+        <li><strong>Preferensi Aplikasi &amp; Standar Kabel Bengkel (<code>SharedPreferences</code>):</strong> Pilihan Mode Pengguna (Mudah/Profesional), mode tata letak (Grid/Bebas), status penyelesaian tutorial pemula, serta pengaturan standar penampang kabel default.</li>
+        <li><strong>Progres Latihan &amp; Nama Siswa Opsional (<code>SharedPreferences</code>):</strong> Skor bintang latihan merangkai/cari kerusakan, status Mode Guru, serta nama siswa opsional (jika Anda ketikkan sendiri saat membuat Kartu Hasil Latihan).</li>
+        <li><strong>Metadata Kop Gambar Ekspor (<code>SharedPreferences</code>):</strong> Nama Proyek, Nama Panel, Nama Penggambar (<em>Drawn By</em>), dan Nama Sekolah/Instansi yang Anda isi sendiri pada dialog Ekspor Dokumen Kerja (PDF/XLSX/CSV/DXF) agar tidak perlu mengetik ulang setiap kali mengekspor.</li>
+      </ul>
+      <p>Seluruh data di atas tetap berada di perangkat Anda dan tidak pernah diakses oleh atau dikirimkan kepada ControlEngineerID.</p>
+
+      <h3>3. Impor &amp; Ekspor Berkas (Kendali Pengguna)</h3>
+      <ul>
+        <li><strong>Membuka Berkas (<code>.wsim</code>):</strong> Saat Anda membuka berkas rangkaian atau soal <code>.wsim</code> melalui pemilih berkas sistem Android (<em>Storage Access Framework</em> / <code>Intent.ACTION_VIEW</code>), aplikasi hanya membaca berkas yang Anda pilih secara eksplisit.</li>
+        <li><strong>Mengekspor &amp; Membagikan Dokumen:</strong> Saat Anda mengekspor dokumen kerja (PDF, Excel <code>.xlsx</code>, CSV, DXF, rangkaian <code>.wsim</code>, atau gambar PNG Kartu Hasil Latihan), berkas sementara dibuat di <code>cacheDir/export/</code> dan dibagikan menggunakan lembar berbagi bawaan Android (<code>FileProvider</code> / <code>Intent.ACTION_SEND</code>) atau disimpan ke folder pilihan Anda (<code>ActivityResultContracts.CreateDocument</code>). Pengiriman berkas ke aplikasi lain sepenuhnya berada di bawah kendali dan tindakan langsung Anda.</li>
+      </ul>
+
+      <h3>4. Izin Perangkat (Permissions)</h3>
+      <p>
+        Pada manifes aplikasi (<code>AndroidManifest.xml</code>), Wiring Sim <strong>tidak mendeklarasikan izin berbahaya (<em>runtime/dangerous permissions</em>) maupun izin jaringan</strong>. Satu-satunya izin teknis di dalam paket terkompilasi adalah <code>id.controlengineer.wiresim.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</code> (level proteksi <code>signature</code>) yang ditambahkan secara otomatis oleh pustaka standar AndroidX Core untuk keamanan komunikasi internal komponen aplikasi di Android 13+.
+      </p>
+
+      <h3>5. Layanan Pihak Ketiga (Iklan &amp; Pembelian)</h3>
+      <p>
+        Versi aplikasi saat ini <strong>tidak mengintegrasikan SDK periklanan (seperti AdMob) maupun SDK pembayaran (Google Play Billing)</strong>. Apabila di masa mendatang fitur tersebut ditambahkan melalui pembaruan aplikasi, kebijakan privasi ini akan diperbarui terlebih dahulu sebelum rilis tersebut dipublikasikan.
+      </p>
+
+      <h3>6. Penghapusan Data &amp; Retensi</h3>
+      <ul>
+        <li>Anda dapat menghapus rangkaian tersimpan satu per satu langsung dari layar Beranda aplikasi.</li>
+        <li>Anda dapat mereset progres latihan dari menu Latihan di dalam aplikasi.</li>
+        <li>Anda dapat menghapus seluruh data lokal aplikasi kapan saja melalui menu <strong>Pengaturan Android &rarr; Aplikasi &rarr; Wiring Sim &rarr; Penyimpanan &rarr; Hapus Data (Clear Storage)</strong> atau dengan mencopot pemasangan (<em>uninstall</em>) aplikasi.</li>
+      </ul>
+
+      <h3>7. Privasi Anak-Anak</h3>
+      <p>
+        Aplikasi ini merupakan alat bantu edukasi teknik ketenagalistrikan (SMK TITL, mahasiswa teknik elektro, dan teknisi) serta tidak mengumpulkan informasi pribadi apa pun dari pengguna segala usia, termasuk anak-anak di bawah usia 13 tahun.
+      </p>
+
+      <h3>8. Hubungi Kami</h3>
+      <p>
+        Jika Anda memiliki pertanyaan mengenai Kebijakan Privasi ini, silakan hubungi kami melalui email di: <strong><code>&lt;&lt;EMAIL_PEMILIK&gt;&gt;</code></strong>.
+      </p>
+    </section>
+
+    <section class="card" id="en" lang="en">
+      <span class="lang-badge">English</span>
+      <h2>Privacy Policy — Wiring Sim</h2>
+
+      <h3>1. Overview</h3>
+      <p>
+        <strong>Wiring Sim</strong> (<code>id.controlengineer.wiresim</code>) is an interactive electrical installation and 3-phase motor control simulator that operates <strong>100% offline</strong> on your Android device. We respect your privacy:
+      </p>
+      <ul>
+        <li>The app <strong>does not request internet access</strong> (<code>android.permission.INTERNET</code>) or any sensitive device permissions (no camera, location, microphone, contacts, or broad storage permissions).</li>
+        <li>The app <strong>has no user accounts/login</strong>, uses no external servers, includes no third-party analytics/tracking SDKs, and <strong>displays no advertisements</strong> in the current version (<code>1.0.0</code>).</li>
+        <li><strong>No personal data or usage data is ever transmitted off your device</strong> to the developer or any third party.</li>
+      </ul>
+
+      <h3>2. Data Stored Locally on Your Device</h3>
+      <p>
+        To support circuit simulation, exercises, and working document export, the app stores the following data <strong>strictly within the app's private internal storage</strong> on your device (<code>filesDir</code>, <code>cacheDir</code>, and <code>SharedPreferences</code> <code>wiresim_prefs</code>):
+      </p>
+      <ul>
+        <li><strong>Saved Circuits &amp; Working Draft Autosaves (<code>filesDir/circuits/</code> &amp; <code>filesDir/autosave/</code>):</strong> Component layouts, wire connections, wire sizing, device locations (<code>+IEC 81346-1</code>), and multicore field cables (<code>-W</code>) that you create in the editor.</li>
+        <li><strong>App Preferences &amp; Workshop Cable Standards (<code>SharedPreferences</code>):</strong> Selected User Mode (Easy/Professional), layout mode (Grid/Free), beginner tutorial completion status, and default cable sizing parameters.</li>
+        <li><strong>Exercise Progress &amp; Optional Student Name (<code>SharedPreferences</code>):</strong> Star ratings and best scores for wiring/troubleshooting exercises, Teacher Mode toggle, and an optional student name (only if typed by the user when generating an Exercise Result Card).</li>
+        <li><strong>Export Title Block Metadata (<code>SharedPreferences</code>):</strong> Project Name, Panel Name, Drawn By name, and School/Company name that you optionally enter in the Export Working Documents dialog (PDF/XLSX/CSV/DXF) for convenience across exports.</li>
+      </ul>
+      <p>All of the data above remains strictly on your device and is never accessed by or transmitted to ControlEngineerID.</p>
+
+      <h3>3. File Import &amp; Export (User-Initiated)</h3>
+      <ul>
+        <li><strong>Opening Files (<code>.wsim</code>):</strong> When you import or open a <code>.wsim</code> circuit or exercise file via the Android system file picker (<em>Storage Access Framework</em> / <code>Intent.ACTION_VIEW</code>), the app only reads the specific file you explicitly select.</li>
+        <li><strong>Exporting &amp; Sharing Documents:</strong> When you export working documents (PDF, Excel <code>.xlsx</code>, CSV, DXF, <code>.wsim</code> circuit files, or PNG Exercise Result Cards), temporary files are generated in <code>cacheDir/export/</code> and shared via the standard Android Sharesheet (<code>FileProvider</code> / <code>Intent.ACTION_SEND</code>) or saved to a user-selected location (<code>ActivityResultContracts.CreateDocument</code>). Sharing files with other apps is completely initiated and controlled by you.</li>
+      </ul>
+
+      <h3>4. Device Permissions</h3>
+      <p>
+        In its application manifest (<code>AndroidManifest.xml</code>), Wiring Sim <strong>declares zero dangerous/runtime permissions and zero network permissions</strong>. The only technical permission present in the merged manifest is <code>id.controlengineer.wiresim.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</code> (<code>signature</code> protection level), which is automatically injected by the standard AndroidX Core library to secure internal broadcast receivers on Android 13+.
+      </p>
+
+      <h3>5. Third-Party Services (Ads &amp; Billing)</h3>
+      <p>
+        The current version of the app <strong>does not integrate any advertising SDKs (such as AdMob) or billing SDKs (Google Play Billing)</strong>. If such features are introduced in a future update, this Privacy Policy will be updated prior to publishing that release.
+      </p>
+
+      <h3>6. Data Retention &amp; Deletion</h3>
+      <ul>
+        <li>You can delete individual saved circuits directly from the app's Home screen.</li>
+        <li>You can reset exercise progress from the Exercises screen inside the app.</li>
+        <li>You can erase all local app data at any time via <strong>Android Settings &rarr; Apps &rarr; Wiring Sim &rarr; Storage &rarr; Clear Storage / Clear Data</strong>, or by uninstalling the app.</li>
+      </ul>
+
+      <h3>7. Children's Privacy</h3>
+      <p>
+        This app is an electrical engineering educational tool and does not collect any personal information from users of any age, including children under the age of 13.
+      </p>
+
+      <h3>8. Contact Us</h3>
+      <p>
+        If you have any questions or concerns regarding this Privacy Policy, please contact us via email at: <strong><code>&lt;&lt;EMAIL_PEMILIK&gt;&gt;</code></strong>.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 ControlEngineerID &middot; Wiring Sim (<code>id.controlengineer.wiresim</code>)
+  </footer>
+</body>
+</html>

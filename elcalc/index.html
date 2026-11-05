@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kebijakan Privasi / Privacy Policy — Panel Calc (id.controlengineer.elcalc)</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #0284c7;
+      --border: #e2e8f0;
+      --code-bg: #f1f5f9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b192c;
+        --card: #102a43;
+        --text: #f1f5f9;
+        --muted: #cbd5e1;
+        --accent: #4fc3f7;
+        --border: #243b53;
+        --code-bg: #1e293b;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px 16px 48px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      line-height: 1.3;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 12px;
+    }
+    h2 {
+      margin-top: 32px;
+      font-size: 1.35rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    h3 {
+      margin-top: 20px;
+      font-size: 1.08rem;
+    }
+    p, li { color: var(--text); }
+    .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+    code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.9em;
+    }
+    a { color: var(--accent); }
+    hr {
+      border: 0;
+      border-top: 2px dashed var(--border);
+      margin: 36px 0;
+    }
+    .lang-nav {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .lang-nav a {
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Kebijakan Privasi / Privacy Policy<br><small>Panel Calc (<code>id.controlengineer.elcalc</code>)</small></h1>
+    <div class="meta">
+      <strong>Tanggal Berlaku / Effective Date:</strong> 2026-11-03 &nbsp;|&nbsp;
+      <strong>Pengembang / Developer:</strong> ControlEngineerID &nbsp;|&nbsp;
+      <strong>Email Kontak / Contact:</strong> <code>&lt;&lt;EMAIL_PEMILIK&gt;&gt;</code>
+    </div>
+
+    <nav class="lang-nav" aria-label="Language switcher">
+      <a href="#id">Bahasa Indonesia</a>
+      <a href="#en">English Version</a>
+    </nav>
+
+    <section id="id" lang="id">
+      <h2>Bagian 1 — Bahasa Indonesia</h2>
+
+      <h3>1. Ringkasan &amp; Pemrosesan Lokal (Tanpa Akun)</h3>
+      <p>
+        <strong>Panel Calc</strong> (<code>id.controlengineer.elcalc</code>) adalah aplikasi kalkulator teknik listrik industri dan perakitan panel yang memproses seluruh perhitungan serta pembuatan laporan PDF/Excel (<code>.xlsx</code>) <strong>100% secara lokal di perangkat Anda (offline)</strong>.
+      </p>
+      <ul>
+        <li><strong>Tidak Ada Akun Pengguna:</strong> Aplikasi ini tidak memiliki fitur pendaftaran akun, login, atau profil pengguna.</li>
+        <li><strong>Tidak Ada Server Pengembang:</strong> ControlEngineerID tidak mengoperasikan server backend sendiri dan tidak mengumpulkan, mengirimkan, menyimpan, atau menjual angka perhitungan, nama proyek/sirkit, tabel KHA kustom, maupun dokumen PDF/Excel yang Anda buat.</li>
+        <li><strong>Penyimpanan Lokal di Perangkat:</strong> Preferensi aplikasi (status pembelian Pro <code>pro_lifetime</code>, waktu mulai masa uji coba 3 hari, batas waktu akses Pro 24 jam dari iklan berimbalan, tabel KHA buatan pengguna, dan kop laporan opsional) disimpan semata-mata di dalam ruang penyimpanan internal aplikasi di perangkat Anda menggunakan Android Jetpack DataStore (<code>elcalc_prefs</code>, <code>kha_tables</code>, dan <code>report_meta</code>).</li>
+      </ul>
+
+      <h3>2. Izin Aplikasi (Permissions)</h3>
+      <p>Berdasarkan <code>AndroidManifest.xml</code> aplikasi dan manifes gabungan SDK pihak ketiga:</p>
+      <ul>
+        <li><code>android.permission.INTERNET</code> dan <code>android.permission.ACCESS_NETWORK_STATE</code>: Digunakan <strong>hanya</strong> oleh Google Play Billing (untuk memproses/memulihkan pembelian satu kali <code>pro_lifetime</code>), Google User Messaging Platform (UMP, untuk formulir persetujuan privasi bila diwajibkan wilayah), dan Google AdMob (hanya saat memuat/menampilkan iklan video berimbalan opsional untuk membuka akses Pro 24 jam). Kalkulator inti tetap berjalan tanpa koneksi internet.</li>
+        <li><code>com.google.android.gms.permission.AD_ID</code> dan <code>android.permission.ACCESS_ADSERVICES_*</code> (ditambahkan otomatis oleh manifes pustaka <code>play-services-ads</code>): Digunakan oleh SDK Google AdMob untuk mengakses pengenal iklan Android (<em>Advertising ID</em>) sesuai pengaturan privasi perangkat dan pilihan persetujuan pengguna.</li>
+        <li><code>com.android.vending.billing.BILLING</code> (ditambahkan otomatis oleh manifes pustaka <code>billing-ktx</code>): Digunakan oleh Google Play Billing untuk berkomunikasi dengan layanan Google Play Store di perangkat.</li>
+        <li><strong>Ekspor Berkas Tanpa Izin Penyimpanan Luas:</strong> Saat Anda membagikan laporan perhitungan PDF atau Excel (<code>.xlsx</code>), berkas dibuat di direktori cache internal aplikasi (<code>cacheDir/reports/</code>) dan dibagikan ke aplikasi pilihan Anda melalui lembar bagi sistem Android (<code>Intent.ACTION_SEND</code> + <code>androidx.core.content.FileProvider</code>). Aplikasi tidak meminta izin baca/tulis penyimpanan eksternal (<code>READ_EXTERNAL_STORAGE</code> / <code>WRITE_EXTERNAL_STORAGE</code>).</li>
+      </ul>
+
+      <h3>3. Pengumpulan Data oleh SDK Pihak Ketiga (Google)</h3>
+      <p>
+        Meskipun ControlEngineerID tidak mengumpulkan data secara langsung, aplikasi ini mengintegrasikan pustaka resmi Google berikut yang dapat mengumpulkan dan mengirimkan data tertentu ke Google dengan enkripsi TLS:
+      </p>
+      <ol>
+        <li>
+          <strong>Google AdMob (<code>com.google.android.gms:play-services-ads:25.5.0</code>) &amp; Google UMP (<code>com.google.android.ump:user-messaging-platform:4.0.0</code>)</strong>
+          <ul>
+            <li>Aplikasi menyertakan <code>DELAY_APP_MEASUREMENT_INIT = true</code> sehingga inisialisasi pengukuran iklan ditunda hingga pemeriksaan persetujuan UMP selesai (<code>UserMessagingPlatform</code>).</li>
+            <li>Saat iklan diinisialisasi atau saat Anda memilih tombol <em>"Tonton 1 iklan: Pro 24 jam"</em>, SDK Google Mobile Ads dapat mengumpulkan:
+              <ul>
+                <li><strong>ID Perangkat atau ID Lainnya:</strong> <em>Advertising ID</em> (AAID), <em>App set ID</em>, dan pengenal perangkat terkait iklan/pencegahan penipuan.</li>
+                <li><strong>Perkiraan Lokasi (Coarse Location):</strong> Lokasi perkiraan berdasarkan alamat IP (bukan lokasi GPS presisi).</li>
+                <li><strong>Aktivitas Aplikasi:</strong> Interaksi penayangan/klik iklan video berimbalan.</li>
+                <li><strong>Info dan Performa Aplikasi:</strong> Log kerusakan (<em>crash logs</em>) dan data diagnostik performa SDK iklan.</li>
+              </ul>
+            </li>
+            <li>Tujuan pemrosesan oleh Google mencakup penayangan iklan, analitik iklan, serta pencegahan penipuan dan keamanan.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Google Play Billing (<code>com.android.billingclient:billing-ktx:9.1.0</code>)</strong>
+          <ul>
+            <li>Digunakan untuk memproses pembelian sekali bayar seumur hidup (<code>pro_lifetime</code>) dan memverifikasi status hak akses (<em>entitlement</em>) saat aplikasi dibuka kembali.</li>
+            <li>Seluruh transaksi pembayaran diproses langsung oleh Google Play. ControlEngineerID tidak pernah melihat atau menyimpan nomor kartu kredit, rekening bank, maupun detail instrumen pembayaran Anda.</li>
+          </ul>
+        </li>
+      </ol>
+      <p>
+        Kebijakan privasi dan pemrosesan data oleh Google dapat dipelajari di:<br>
+        • <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Kebijakan Privasi Google</a><br>
+        • <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">Cara Google Menggunakan Informasi dari Situs atau Aplikasi yang Menggunakan Layanan Kami</a>
+      </p>
+
+      <h3>4. Pilihan Privasi, Reset ID Iklan, &amp; Penghapusan Data</h3>
+      <ul>
+        <li><strong>Formulir Pilihan Privasi (UMP):</strong> Bagi pengguna di wilayah yang mewajibkan persetujuan (seperti EEA/UK), tombol <strong>Pilihan privasi</strong> (<em>Privacy options</em>) tersedia di bilah atas aplikasi untuk meninjau atau mencabut persetujuan iklan kapan saja.</li>
+        <li><strong>Pengaturan Iklan Perangkat Android:</strong> Anda dapat mereset atau menghapus <em>Advertising ID</em> melalui menu <strong>Setelan Android → Google → Iklan (Ads)</strong> di perangkat Anda.</li>
+        <li><strong>Penghapusan Data Lokal:</strong> Karena tidak ada akun pengguna atau penyimpanan di server ControlEngineerID, Anda dapat menghapus seluruh data lokal aplikasi (termasuk tabel KHA dan kop laporan yang tersimpan) kapan saja dengan membuka <strong>Setelan Android → Aplikasi → Panel Calc → Penyimpanan → Hapus Data (Clear Storage)</strong> atau dengan mencopot pemasangan (<em>uninstall</em>) aplikasi.</li>
+      </ul>
+
+      <h3>5. Privasi Anak-Anak</h3>
+      <p>
+        <strong>Panel Calc</strong> adalah alat bantu teknik untuk teknisi listrik, perakit panel, mahasiswa teknik, dan profesional industri. Aplikasi ini tidak ditujukan untuk anak-anak di bawah usia 13 tahun.
+      </p>
+
+      <h3>6. Hubungi Kami</h3>
+      <p>
+        Jika Anda memiliki pertanyaan mengenai Kebijakan Privasi ini atau praktik data aplikasi <strong>Panel Calc</strong>, silakan hubungi kami melalui email di:<br>
+        <strong>Email:</strong> <code>&lt;&lt;EMAIL_PEMILIK&gt;&gt;</code>
+      </p>
+    </section>
+
+    <hr />
+
+    <section id="en" lang="en">
+      <h2>Part 2 — English Version</h2>
+
+      <h3>1. Overview &amp; Local Processing (No User Accounts)</h3>
+      <p>
+        <strong>Panel Calc</strong> (<code>id.controlengineer.elcalc</code>) is an industrial electrical and control panel calculator that processes all engineering calculations and PDF/Excel (<code>.xlsx</code>) reports <strong>100% locally on your device (offline)</strong>.
+      </p>
+      <ul>
+        <li><strong>No User Accounts:</strong> The app does not require or offer user registration, login, or cloud accounts.</li>
+        <li><strong>No Developer Backend Servers:</strong> ControlEngineerID does not operate backend servers and does not collect, transmit, store, or sell your calculation inputs, circuit/project headers, custom ampacity (KHA) tables, or generated PDF/Excel files.</li>
+        <li><strong>On-Device Local Storage:</strong> App preferences (one-time <code>pro_lifetime</code> entitlement cache, 3-day trial start timestamp, 24-hour rewarded unlock expiry timestamp, custom KHA tables, and optional report header fields) are stored exclusively on your device inside the app's private storage via Android Jetpack DataStore (<code>elcalc_prefs</code>, <code>kha_tables</code>, and <code>report_meta</code>).</li>
+      </ul>
+
+      <h3>2. App Permissions</h3>
+      <p>Based on the app's <code>AndroidManifest.xml</code> and merged third-party library manifests:</p>
+      <ul>
+        <li><code>android.permission.INTERNET</code> and <code>android.permission.ACCESS_NETWORK_STATE</code>: Used <strong>solely</strong> by Google Play Billing (to process/restore the optional <code>pro_lifetime</code> one-time purchase), Google User Messaging Platform (UMP, to display regional privacy consent forms where required), and Google AdMob (only to load/show optional rewarded video ads that unlock Pro features for 24 hours). Core electrical calculators work completely offline.</li>
+        <li><code>com.google.android.gms.permission.AD_ID</code> and <code>android.permission.ACCESS_ADSERVICES_*</code> (merged automatically by <code>play-services-ads</code>): Used by the Google Mobile Ads SDK to access the Android Advertising ID in accordance with device privacy settings and user consent.</li>
+        <li><code>com.android.vending.billing.BILLING</code> (merged automatically by <code>billing-ktx</code>): Used by Google Play Billing to communicate with Google Play Store services on the device.</li>
+        <li><strong>Report Sharing Without Storage Permissions:</strong> When you export and share a PDF or Excel (<code>.xlsx</code>) calculation report, the file is generated in the app's internal cache (<code>cacheDir/reports/</code>) and shared through the Android system share sheet (<code>Intent.ACTION_SEND</code> + <code>androidx.core.content.FileProvider</code>). The app does not request external storage permissions (<code>READ_EXTERNAL_STORAGE</code> / <code>WRITE_EXTERNAL_STORAGE</code>).</li>
+      </ul>
+
+      <h3>3. Data Collected by Third-Party Google SDKs</h3>
+      <p>
+        While ControlEngineerID does not collect personal data directly, the app integrates official Google SDKs that may collect and transmit certain device and usage data to Google over encrypted connections (HTTPS/TLS):
+      </p>
+      <ol>
+        <li>
+          <strong>Google AdMob (<code>com.google.android.gms:play-services-ads:25.5.0</code>) &amp; Google UMP (<code>com.google.android.ump:user-messaging-platform:4.0.0</code>)</strong>
+          <ul>
+            <li>The app sets <code>DELAY_APP_MEASUREMENT_INIT = true</code> so ad measurement initialization is delayed until UMP consent status has been checked (<code>UserMessagingPlatform</code>).</li>
+            <li>When ads are initialized or when you tap <em>"Watch 1 ad: Pro for 24h"</em>, the Google Mobile Ads SDK may collect:
+              <ul>
+                <li><strong>Device or Other IDs:</strong> Android Advertising ID (AAID), App set ID, and device identifiers used for advertising and fraud prevention.</li>
+                <li><strong>Approximate Location:</strong> Coarse location inferred from IP address (the app never requests GPS/precise location permissions).</li>
+                <li><strong>App Activity:</strong> Ad views and interactions with rewarded video ads.</li>
+                <li><strong>App Info and Performance:</strong> SDK crash logs and performance diagnostics.</li>
+              </ul>
+            </li>
+            <li>Google processes this data for advertising/marketing, analytics, and fraud prevention/security.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Google Play Billing (<code>com.android.billingclient:billing-ktx:9.1.0</code>)</strong>
+          <ul>
+            <li>Used to process the optional one-time purchase (<code>pro_lifetime</code>) and verify purchase entitlement upon app launch/resume.</li>
+            <li>All financial transactions are processed directly by Google Play. ControlEngineerID never receives or stores your credit card details, bank account numbers, or billing address.</li>
+          </ul>
+        </li>
+      </ol>
+      <p>
+        Learn more about how Google handles data:<br>
+        • <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a><br>
+        • <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google Uses Information from Sites or Apps That Use Our Services</a>
+      </p>
+
+      <h3>4. Privacy Choices, Advertising ID Controls, &amp; Data Deletion</h3>
+      <ul>
+        <li><strong>In-App Privacy Options (UMP):</strong> Where required by applicable privacy laws (such as EEA/UK GDPR), a <strong>Privacy options</strong> button appears in the top app bar allowing you to review or withdraw your consent at any time.</li>
+        <li><strong>Android Advertising ID Controls:</strong> You can reset or delete your device's Advertising ID at any time in <strong>Android Settings → Google → Ads</strong>.</li>
+        <li><strong>Deleting Local Data:</strong> Because no data is stored on ControlEngineerID servers and no user account exists, you can permanently erase all local app data (including custom KHA tables and saved report headers) at any time via <strong>Android Settings → Apps → Panel Calc → Storage → Clear Storage</strong>, or by uninstalling the app.</li>
+      </ul>
+
+      <h3>5. Children's Privacy</h3>
+      <p>
+        <strong>Panel Calc</strong> is a technical engineering utility designed for electricians, panel builders, engineering students, and industrial professionals. It is not directed at children under the age of 13.
+      </p>
+
+      <h3>6. Contact Us</h3>
+      <p>
+        If you have any questions or concerns regarding this Privacy Policy or <strong>Panel Calc</strong>, please contact us at:<br>
+        <strong>Email:</strong> <code>&lt;&lt;EMAIL_PEMILIK&gt;&gt;</code>
+      </p>
+    </section>
+  </main>
+</body>
+</html>
