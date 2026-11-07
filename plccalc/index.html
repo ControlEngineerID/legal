@@ -148,31 +148,39 @@
         Kebijakan Privasi ini menjelaskan bagaimana informasi dikelola saat Anda menggunakan Aplikasi, termasuk integrasi <strong>Google AdMob (Google Mobile Ads SDK)</strong> untuk menampilkan iklan video berhadiah (<em>rewarded ads</em>), <strong>Google User Messaging Platform (UMP) SDK</strong> untuk pengelolaan persetujuan privasi, dan <strong>Google Play Billing</strong> untuk pembelian dalam aplikasi (<em>in-app purchases</em>).
       </p>
 
-      <h3>2. Data yang Diproses Secara Lokal di Perangkat Anda (Tanpa Akun &amp; Tanpa Server Pengembang)</h3>
+      <h3>2. Data yang Diproses Secara Lokal &amp; Hash Perangkat Satu Arah untuk Trial 7 Hari</h3>
       <ul>
         <li><strong>Tanpa Akun Pengguna:</strong> PLC Calc tidak memiliki fitur pendaftaran, pembuatan akun, maupun proses masuk (<em>login</em>).</li>
-        <li><strong>Tanpa Server Pengembang:</strong> Kami tidak mengoperasikan server <em>backend</em> milik pengembang untuk mengumpulkan, menyimpan, atau menerima data pribadi maupun riwayat perhitungan teknis Anda.</li>
-        <li><strong>Penyimpanan Lokal di Perangkat (Jetpack DataStore):</strong> Seluruh angka masukan, nilai register, slot memori konverter (<code>saved_memory</code>), konfigurasi sensor tersimpan (<code>saved_sensors</code>), hasil uji linieritas lapangan, nama teknisi (<code>report_technician</code>) dan nama perusahaan (<code>report_company</code>) yang Anda ketik pada kop laporan, serta waktu mulai masa percobaan Pro 3 hari (<code>trial_start_millis</code>) dan status akses Pro (<code>pro_lifetime</code>, <code>rewarded_until_millis</code>) disimpan semata-mata secara lokal di penyimpanan internal Aplikasi pada perangkat Anda (<code>plccalc_prefs</code>).</li>
+        <li><strong>Hash ID Perangkat Satu Arah untuk Pencegahan Penyalahgunaan Trial 7 Hari:</strong>
+          <ul>
+            <li>Ketika aplikasi memeriksa ketersediaan atau ketika Anda menekan tombol <strong>"Mulai trial 7 hari"</strong>, aplikasi menghitung hash kriptografi satu arah <code>SHA-256(ANDROID_ID + ":" + packageName + ":" + SALT_APLIKASI)</code> (64 karakter heksadesimal) di dalam perangkat dan mengirimkannya melalui koneksi terenkripsi HTTPS (<code>GET /v1/trial/status?h=</code> dan <code>POST /v1/trial/start</code>) ke layanan verifikasi trial kami (Cloudflare Worker).</li>
+            <li><strong>Nilai <code>ANDROID_ID</code> mentah TIDAK PERNAH dikirim ke luar perangkat.</strong></li>
+            <li><strong>Tujuan Pemrosesan:</strong> Semata-mata untuk <strong>pencegahan penipuan/penyalahgunaan (<em>fraud prevention</em>) dan fungsionalitas aplikasi</strong>, yaitu memastikan masa percobaan Pro gratis 7 hari hanya digunakan satu kali per perangkat meskipun aplikasi diinstal ulang atau data lokal dihapus.</li>
+            <li><strong>Retensi Data:</strong> Server kami hanya menyimpan string hash satu arah (64 karakter hex) beserta stempel waktu mulai (<code>started_at</code>) dan berakhir (<code>ends_at</code>) masa trial 7 hari selama layanan trial beroperasi agar perangkat yang sudah pernah memakai trial 7 hari tetap dikenali.</li>
+            <li><strong>Tidak Dibagikan ke Pihak Ketiga:</strong> Hash perangkat ini <strong>tidak pernah dibagikan</strong>, dijual, atau diserahkan kepada pihak ketiga mana pun, serta tidak digunakan untuk periklanan, profil pengguna, maupun pelacakan lintas aplikasi.</li>
+          </ul>
+        </li>
+        <li><strong>Penyimpanan Lokal di Perangkat (Jetpack DataStore):</strong> Seluruh angka masukan, nilai register, slot memori konverter (<code>saved_memory</code>), konfigurasi sensor tersimpan (<code>saved_sensors</code>), hasil uji linieritas lapangan, nama teknisi (<code>report_technician</code>) dan nama perusahaan (<code>report_company</code>) yang Anda ketik pada kop laporan, serta cache status akses Pro (<code>pro_lifetime</code>, <code>subscription_active</code>, <code>trial_ends_at_millis</code>, <code>rewarded_until_millis</code>) disimpan secara lokal di penyimpanan internal Aplikasi pada perangkat Anda (<code>plccalc_prefs</code>).</li>
         <li><strong>Ekspor Laporan PDF &amp; Excel (FileProvider):</strong> Saat Anda memilih mengekspor laporan kalibrasi atau pembacaan sensor ke file PDF atau Excel (<code>.xlsx</code>), file tersebut dibuat secara lokal di direktori <em>cache</em> internal Aplikasi (<code>cacheDir/reports/</code>) dan hanya dibagikan ke aplikasi lain di perangkat Anda apabila Anda secara eksplisit memilih tindakan bagikan (<em>Share</em> melalui Android <code>FileProvider</code>). Kami tidak pernah menerima salinan laporan tersebut.</li>
-        <li><strong>Penghapusan Data Lokal:</strong> Menghapus instalan Aplikasi (<em>uninstall</em>) atau memilih "Hapus Data" (<em>Clear Storage</em>) pada pengaturan sistem Android akan menghapus seluruh data lokal tersebut secara permanen dari perangkat Anda.</li>
+        <li><strong>Penghapusan Data Lokal:</strong> Menghapus instalan Aplikasi (<em>uninstall</em>) atau memilih "Hapus Data" (<em>Clear Storage</em>) pada pengaturan sistem Android akan menghapus seluruh data kalkulasi dan preferensi lokal dari perangkat Anda.</li>
       </ul>
 
       <h3>3. Izin Aplikasi (Android Permissions)</h3>
       <p>Aplikasi hanya mendeklarasikan dua izin standar di <code>AndroidManifest.xml</code>:</p>
       <ol>
-        <li><code>android.permission.INTERNET</code> — Digunakan hanya oleh SDK resmi Google (Google Play Billing, Google Mobile Ads / AdMob, dan Google UMP) untuk memuat iklan berhadiah, menampilkan formulir persetujuan privasi, dan memverifikasi transaksi pembelian dengan layanan Google Play. Seluruh fitur kalkulasi teknik bekerja secara offline.</li>
-        <li><code>android.permission.ACCESS_NETWORK_STATE</code> — Digunakan oleh SDK Google untuk memeriksa apakah koneksi jaringan tersedia sebelum memuat iklan atau memperbarui informasi persetujuan.</li>
+        <li><code>android.permission.INTERNET</code> — Digunakan untuk memverifikasi status trial 7 hari perangkat (hash satu arah SHA-256) serta oleh SDK resmi Google (Google Play Billing, Google Mobile Ads / AdMob, dan Google UMP) untuk memuat iklan berhadiah, menampilkan formulir persetujuan privasi, dan memverifikasi transaksi pembelian dengan layanan Google Play. Seluruh fitur kalkulasi teknik bekerja secara offline.</li>
+        <li><code>android.permission.ACCESS_NETWORK_STATE</code> — Digunakan untuk memeriksa apakah koneksi jaringan tersedia sebelum memulai trial 7 hari, memuat iklan, atau memperbarui informasi persetujuan.</li>
       </ol>
       <p>Aplikasi <strong>tidak</strong> meminta izin lokasi GPS (<code>ACCESS_FINE_LOCATION</code> / <code>ACCESS_COARSE_LOCATION</code>), kamera, mikrofon, kontak, telepon, maupun akses penyimpanan eksternal.</p>
 
       <h3>4. Data yang Dikumpulkan oleh SDK Pihak Ketiga (Google)</h3>
       <p>
-        Meskipun kode aplikasi ControlEngineerID tidak mengirimkan data ke server kami sendiri, Aplikasi menyertakan <em>Software Development Kit</em> (SDK) resmi dari Google untuk menyediakan fitur iklan berhadiah dan pembelian Pro. SDK ini secara otomatis mengumpulkan dan mengirimkan data tertentu ke Google.
+        Selain pengiriman hash satu arah untuk pencegahan pengulangan trial 7 hari ke server kami sebagaimana dijelaskan pada Bagian 2, Aplikasi menyertakan <em>Software Development Kit</em> (SDK) resmi dari Google untuk menyediakan fitur iklan berhadiah dan pembelian Pro. SDK ini secara otomatis mengumpulkan dan mengirimkan data tertentu ke Google.
       </p>
 
       <h3>A. Google AdMob (<code>com.google.android.gms:play-services-ads</code>)</h3>
       <p>
-        Aplikasi menggunakan Google AdMob untuk menayangkan <strong>iklan video berhadiah (<em>rewarded ads</em>)</strong> ketika pengguna memilih menonton iklan guna membuka fitur Pro selama 24 jam. Aplikasi mengaktifkan <code>DELAY_APP_MEASUREMENT_INIT = true</code> pada manifest sehingga inisialisasi pengukuran iklan ditunda hingga status persetujuan (UMP) diperiksa.
+        Aplikasi menggunakan Google AdMob untuk menayangkan <strong>iklan video berhadiah (<em>rewarded ads</em>)</strong> ketika pengguna memilih menonton iklan guna membuka fitur Pro selama <strong>10 menit per iklan</strong> (dapat ditumpuk hingga 3 iklan / 30 menit, maksimal 5 iklan per hari). Aplikasi mengaktifkan <code>DELAY_APP_MEASUREMENT_INIT = true</code> pada manifest sehingga inisialisasi pengukuran iklan ditunda hingga status persetujuan (UMP) diperiksa.
       </p>
       <p>
         Berdasarkan dokumentasi resmi Google (<a href="https://developers.google.com/admob/android/privacy/play-data-disclosure" target="_blank" rel="noopener noreferrer">Google Play data disclosure for Google Mobile Ads SDK</a>), Google Mobile Ads SDK mengumpulkan dan membagikan jenis data berikut secara otomatis untuk tujuan <strong>periklanan/pemasaran (<em>advertising or marketing</em>), analitik (<em>analytics</em>), dan pencegahan penipuan/keamanan (<em>fraud prevention, security, and compliance</em>)</strong>:
@@ -194,12 +202,12 @@
 
       <h3>B. Google Play Billing (<code>com.android.billingclient:billing-ktx</code>)</h3>
       <p>
-        Aplikasi menggunakan sistem penagihan resmi <a href="https://developer.android.com/google/play/billing" target="_blank" rel="noopener noreferrer">Google Play Billing</a> untuk menawarkan pembelian sekali bayar (<code>pro_lifetime</code>).
+        Aplikasi menggunakan sistem penagihan resmi <a href="https://developer.android.com/google/play/billing" target="_blank" rel="noopener noreferrer">Google Play Billing</a> untuk menawarkan paket akses Pro (<code>pro_access</code> dengan <em>base plan</em> harian <code>daily</code> <em>prepaid</em>, mingguan <code>weekly</code> <em>prepaid</em>, bulanan <code>monthly</code> perpanjangan otomatis, dan tahunan <code>yearly</code> perpanjangan otomatis) serta pembelian sekali bayar seumur hidup (<code>pro_lifetime</code>).
       </p>
       <ul>
         <li>Seluruh transaksi pembayaran dan metode pembayaran (kartu kredit/debit, potong pulsa, dompet digital, atau saldo Google Play) diproses secara langsung oleh <strong>Google Play</strong> melalui aplikasi Google Play Store di perangkat Anda.</li>
         <li><strong>ControlEngineerID tidak pernah menerima, mengakses, atau menyimpan nomor kartu kredit, rekening bank, maupun alamat penagihan Anda.</strong></li>
-        <li>Aplikasi hanya menerima status pembelian (<code>PurchaseState</code>) dan token bukti pembelian (<code>PurchaseToken</code>) dari layanan Google Play Store di perangkat untuk mengaktifkan status Pro (<code>pro_lifetime</code>) secara lokal.</li>
+        <li>Aplikasi hanya menerima status pembelian (<code>PurchaseState</code>), paket/base plan, dan token bukti pembelian (<code>PurchaseToken</code>) dari layanan Google Play Store di perangkat untuk mengaktifkan dan mengakui (<em>acknowledge</em>) hak akses Pro pada perangkat Anda.</li>
       </ul>
 
       <h3>5. Persetujuan Iklan (EEA/UK/Swiss — UMP SDK) dan Kendali Privasi Pengguna</h3>
@@ -211,8 +219,8 @@
 
       <h3>6. Keamanan dan Penyimpanan Data</h3>
       <ul>
-        <li>Seluruh komunikasi jaringan oleh SDK Google dienkripsi selama transit menggunakan <strong>TLS (HTTPS)</strong>.</li>
-        <li>ControlEngineerID tidak menyimpan data pribadi di server eksternal. Data yang dikumpulkan oleh Google AdMob dan Google Play dikelola sesuai dengan <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Kebijakan Privasi Google</a>.</li>
+        <li>Seluruh komunikasi jaringan ke layanan trial kami maupun oleh SDK Google dienkripsi selama transit menggunakan <strong>TLS (HTTPS)</strong>.</li>
+        <li>Server trial kami hanya menyimpan hash satu arah <code>SHA-256</code> perangkat dan stempel waktu trial tanpa data identitas pribadi lainnya, dan tidak pernah membagikannya kepada pihak ketiga. Data yang dikumpulkan oleh Google AdMob dan Google Play dikelola sesuai dengan <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Kebijakan Privasi Google</a>.</li>
       </ul>
 
       <h3>7. Privasi Anak-Anak</h3>
@@ -248,34 +256,42 @@
         PLC Calc ("the App") is an industrial automation programmer calculator (hexadecimal, decimal, binary, octal, IEEE-754 floating-point, BCD, byte order, and register bit manipulation), PLC analog &amp; drive scaling utility (<code>0..27648</code>, <code>4–20 mA</code>, <code>0–10 V</code>, PROFIdrive <code>16#4000</code>), industrial temperature sensor calculator (IEC 60751 Platinum RTDs &amp; NIST ITS-90 Thermocouples), and field instrumentation toolkit (<em>As-Found / As-Left</em> calibration with PDF/Excel report export, NAMUR NE 43 loop diagnostics, and differential pressure / DP level calculator) developed by ControlEngineerID ("we", "us", or "our").
       </p>
       <p>
-        This Privacy Policy explains how information is handled when you use the App, including its integration of <strong>Google AdMob (Google Mobile Ads SDK)</strong> for rewarded video advertisements, the <strong>Google User Messaging Platform (UMP) SDK</strong> for privacy consent management, and <strong>Google Play Billing</strong> for optional in-app purchases.
+        This Privacy Policy explains how information is handled when you use the App, including our one-way hashed device ID verification for the 7-day free trial, <strong>Google AdMob (Google Mobile Ads SDK)</strong> for rewarded video advertisements, the <strong>Google User Messaging Platform (UMP) SDK</strong> for privacy consent management, and <strong>Google Play Billing</strong> for optional in-app subscriptions, prepaid passes, and one-time purchases.
       </p>
 
-      <h3>2. Data Processed Locally on Your Device (No User Accounts &amp; No Developer Server)</h3>
+      <h3>2. Local On-Device Processing &amp; One-Way Hashed Device ID for 7-Day Trial</h3>
       <ul>
         <li><strong>No User Accounts:</strong> PLC Calc does not require or offer user registration, login, or accounts.</li>
-        <li><strong>No Developer Backend Server:</strong> We do not operate any backend server that collects, stores, or receives your personal data or engineering calculations.</li>
-        <li><strong>Local On-Device Storage (Jetpack DataStore):</strong> All input numbers, register states, converter memory slots (<code>saved_memory</code>), saved sensor configurations (<code>saved_sensors</code>), field linearity test samples, optional technician name (<code>report_technician</code>) and company name (<code>report_company</code>) entered for report headers, as well as the 3-day Pro trial start timestamp (<code>trial_start_millis</code>) and Pro entitlement status (<code>pro_lifetime</code>, <code>rewarded_until_millis</code>) are stored strictly locally in the App's internal storage on your device (<code>plccalc_prefs</code>).</li>
+        <li><strong>One-Way Hashed Device ID for 7-Day Trial Abuse Prevention:</strong>
+          <ul>
+            <li>When checking trial eligibility or when you tap <strong>"Start 7-day trial"</strong>, the App computes a one-way cryptographic hash <code>SHA-256(ANDROID_ID + ":" + packageName + ":" + APP_SALT)</code> (64 hexadecimal characters) on your device and sends it over HTTPS (<code>GET /v1/trial/status?h=</code> and <code>POST /v1/trial/start</code>) to our Cloudflare Worker trial verification service.</li>
+            <li><strong>The raw <code>ANDROID_ID</code> is NEVER transmitted off your device.</strong></li>
+            <li><strong>Purpose:</strong> Solely for <strong>fraud/abuse prevention and app functionality</strong>—specifically to prevent repeat activation of the 7-day free trial on the same device after app reinstallation or storage clearing.</li>
+            <li><strong>Retention:</strong> Our server stores only the 64-character one-way SHA-256 hash alongside the trial <code>started_at</code> and <code>ends_at</code> timestamps for as long as the trial service operates, so the system can recognize whether a device has already used its one-time 7-day trial.</li>
+            <li><strong>Not Shared:</strong> This one-way hashed device identifier is <strong>never shared, sold, or disclosed to any third party</strong>, and is never used for advertising, profiling, or cross-app tracking.</li>
+          </ul>
+        </li>
+        <li><strong>Local On-Device Storage (Jetpack DataStore):</strong> All input numbers, register states, converter memory slots (<code>saved_memory</code>), saved sensor configurations (<code>saved_sensors</code>), field linearity test samples, optional technician name (<code>report_technician</code>) and company name (<code>report_company</code>) entered for report headers, and cached Pro entitlement status (<code>pro_lifetime</code>, <code>subscription_active</code>, <code>trial_ends_at_millis</code>, <code>rewarded_until_millis</code>) are stored locally in the App's internal storage on your device (<code>plccalc_prefs</code>).</li>
         <li><strong>PDF &amp; Excel Report Export (FileProvider):</strong> When you export a calibration or sensor report as a PDF or Excel (<code>.xlsx</code>) file, the file is generated locally in the App's private cache directory (<code>cacheDir/reports/</code>) and is shared with other apps on your device only when you explicitly invoke the Android share sheet via <code>androidx.core.content.FileProvider</code>. We never receive copies of your generated reports.</li>
-        <li><strong>Deleting Local Data:</strong> Uninstalling the App or clearing the App's storage in your Android system settings permanently deletes all locally stored data from your device.</li>
+        <li><strong>Deleting Local Data:</strong> Uninstalling the App or clearing the App's storage in your Android system settings permanently deletes all locally stored calculations and preferences from your device.</li>
       </ul>
 
       <h3>3. Application Permissions</h3>
       <p>The App declares only two standard permissions in <code>AndroidManifest.xml</code>:</p>
       <ol>
-        <li><code>android.permission.INTERNET</code> — Used strictly by official Google SDKs (Google Play Billing, Google Mobile Ads / AdMob, and Google UMP) to load rewarded ads, display consent forms, and verify in-app purchases with Google Play. All engineering calculators work offline.</li>
-        <li><code>android.permission.ACCESS_NETWORK_STATE</code> — Used by Google SDKs to check network connectivity before requesting ads or consent updates.</li>
+        <li><code>android.permission.INTERNET</code> — Used to verify 7-day trial status using the one-way device hash and by official Google SDKs (Google Play Billing, Google Mobile Ads / AdMob, and Google UMP) to load rewarded ads, display consent forms, and verify in-app purchases with Google Play. All engineering calculators work offline.</li>
+        <li><code>android.permission.ACCESS_NETWORK_STATE</code> — Used to check network connectivity before starting the 7-day trial, requesting ads, or updating consent status.</li>
       </ol>
       <p>The App <strong>does not</strong> request GPS location (<code>ACCESS_FINE_LOCATION</code> / <code>ACCESS_COARSE_LOCATION</code>), camera, microphone, contacts, phone state, or external storage permissions.</p>
 
       <h3>4. Data Collected by Third-Party SDKs (Google)</h3>
       <p>
-        Although ControlEngineerID's own application code does not transmit data to any developer server, the App integrates official Google SDKs to support rewarded advertising and in-app purchases. These SDKs automatically collect and share certain data with Google.
+        Aside from the one-way hashed device ID sent to our trial server solely to prevent repeat trials as described in Section 2, the App integrates official Google SDKs to support rewarded advertising and in-app purchases. These SDKs automatically collect and share certain data with Google.
       </p>
 
       <h3>A. Google AdMob (<code>com.google.android.gms:play-services-ads</code>)</h3>
       <p>
-        We use Google AdMob to serve <strong>rewarded video ads</strong> when users choose to watch a video ad to unlock Pro features for 24 hours. The App sets <code>DELAY_APP_MEASUREMENT_INIT = true</code> in the manifest so measurement initialization is delayed until UMP consent status is verified.
+        We use Google AdMob to serve <strong>rewarded video ads</strong> when users choose to watch a video ad to unlock Pro features for <strong>10 minutes per ad</strong> (stackable up to 3 ads / 30 minutes, up to 5 ads per day). The App sets <code>DELAY_APP_MEASUREMENT_INIT = true</code> in the manifest so measurement initialization is delayed until UMP consent status is verified.
       </p>
       <p>
         According to Google's official documentation (<a href="https://developers.google.com/admob/android/privacy/play-data-disclosure" target="_blank" rel="noopener noreferrer">Google Play data disclosure for Google Mobile Ads SDK</a>), the Google Mobile Ads SDK automatically collects and shares the following data types for <strong>advertising or marketing, analytics, and fraud prevention, security, and compliance</strong> purposes:
@@ -297,12 +313,12 @@
 
       <h3>B. Google Play Billing (<code>com.android.billingclient:billing-ktx</code>)</h3>
       <p>
-        We use <a href="https://developer.android.com/google/play/billing" target="_blank" rel="noopener noreferrer">Google Play's billing system</a> to offer the optional one-time lifetime unlock (<code>pro_lifetime</code>).
+        We use <a href="https://developer.android.com/google/play/billing" target="_blank" rel="noopener noreferrer">Google Play's billing system</a> to offer Pro access plans (<code>pro_access</code> with <code>daily</code> 1-day prepaid, <code>weekly</code> 7-day prepaid, <code>monthly</code> auto-renewing, and <code>yearly</code> auto-renewing base plans) as well as a one-time lifetime unlock (<code>pro_lifetime</code>).
       </p>
       <ul>
         <li>All payment transactions and payment methods (credit cards, debit cards, carrier billing, e-wallets, or Google Play balance) are processed directly and exclusively by <strong>Google Play</strong> via the Google Play Store app on your device.</li>
         <li><strong>ControlEngineerID never receives, accesses, or stores your credit card numbers, bank account details, or billing address.</strong></li>
-        <li>The App only queries the local Google Play Store service on your device to check product availability and verify purchase entitlement tokens (<code>PurchaseToken</code>) to activate <code>pro_lifetime</code> locally.</li>
+        <li>The App only queries the local Google Play Store service on your device to check product availability, verify purchase entitlement tokens (<code>PurchaseToken</code>), and acknowledge purchases (<code>acknowledgePurchase</code>) on your device.</li>
       </ul>
 
       <h3>5. Advertising Consent (EEA, UK, and Switzerland — UMP SDK) and User Controls</h3>
@@ -314,8 +330,8 @@
 
       <h3>6. Data Security and Retention</h3>
       <ul>
-        <li>All network traffic transmitted by the Google Mobile Ads SDK and Google Play Billing Library is encrypted in transit using <strong>TLS (HTTPS)</strong>.</li>
-        <li>Because ControlEngineerID does not maintain a backend server or user database, we do not store personal data on our own infrastructure. Data collected by Google SDKs is retained and managed by Google in accordance with the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.</li>
+        <li>All network traffic transmitted to our trial verification server and by the Google Mobile Ads SDK and Google Play Billing Library is encrypted in transit using <strong>TLS (HTTPS)</strong>.</li>
+        <li>Our trial verification server retains only the one-way <code>SHA-256</code> device hash and trial start/end timestamps to prevent repeat trials and never shares this data with third parties. Data collected by Google SDKs is retained and managed by Google in accordance with the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.</li>
       </ul>
 
       <h3>7. Children's Privacy</h3>
